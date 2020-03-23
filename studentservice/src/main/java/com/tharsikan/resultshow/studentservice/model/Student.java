@@ -8,6 +8,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @Data
@@ -28,7 +29,9 @@ public class Student {
     private String gender;
     private String subjectCombination;
     private String nicNo;
-    private LocalDate dateOfBirth;          // in jpa 2.2.. @Temporal no need, it will map to DATE
+   // private LocalDate dateOfBirth;          // in jpa 2.2.. @Temporal no need(map to DATE), no need additional mapping
+    private ZonedDateTime dateOfBirth;          // this gonna mapping to TIMESTAMP like LocalDateTime (not consider ZoneInfo, just SystemDefaultZone)
+                                                // so we need to tell the ZoneInfo in application.yml
 
     @Transient
     private StudentAllocation[] allocations;

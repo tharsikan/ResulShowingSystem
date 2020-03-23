@@ -13,6 +13,9 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -44,10 +47,14 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Student saveStudent(Student student) {
 
-//        for(Telephone telephone :student.getTelephoneList()){
-//            telephone.setStudent(student);
-//        }
+        for(Telephone telephone :student.getTelephoneList()){
+            telephone.setStudent(student);
+        }
         student.setFullName(student.getLastName() +" "+student.getFirstName());
+        ;
+        System.out.println();
+//        ZonedDateTime today = ZonedDateTime.parse(student.getDateOfBirth());
+//        student.setDateOfBirth(today);
         return studentRepository.save(student);
     }
 

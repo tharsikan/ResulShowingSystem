@@ -16,7 +16,14 @@ import FormControl from '@material-ui/core/FormControl';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormLabel from '@material-ui/core/FormLabel';
-
+import 'date-fns';
+import Grid from '@material-ui/core/Grid';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -57,7 +64,7 @@ function StudentForm() {
 	    gender:"",
 	    subjectCombination:"",
 	    nicNo:"",
-	    dateOfBirth:"",
+	    dateOfBirth:new Date('2020-03-18T21:11:54'),
 	    telephoneList:[],
 	    address :{
 		    houseNo:"",
@@ -66,6 +73,12 @@ function StudentForm() {
 	    },
 	    email:""
   });
+
+  const handleDateChange = date => {
+    // setSelectedDate(date);
+    setCourse({...course, dateOfBirth : date})
+  };
+
   const [phone1,setPhone1] = useState('');
   const [phone2,setPhone2] = useState('');
     useEffect(()=>{
@@ -140,6 +153,8 @@ function StudentForm() {
                 })
   }
 
+
+
   return (
     <Container component="main" maxWidth="xs" onSubmit={submitHandil}>
       <CssBaseline />
@@ -202,8 +217,23 @@ function StudentForm() {
            name="subjectCombination" value={course.subjectCombination} onChange={changeHandil}/>
           <TextField variant="outlined" margin="normal" required fullWidth label="Nic No"
            name="nicNo" value={course.nicNo} onChange={changeHandil}/>
-          <TextField variant="outlined" margin="normal" required fullWidth label="Date Of Birth"
-           name="dateOfBirth" value={course.dateOfBirth} onChange={changeHandil}/>
+           <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <KeyboardDatePicker
+          variant="outlined" margin="normal" required fullWidth
+          disableToolbar
+          variant="inline"
+          format="MM/dd/yyyy"
+          margin="normal"
+          id="date-picker-inline"
+          label="Date of Birth"
+          value={course.dateOfBirth}
+          onChange={handleDateChange}
+          KeyboardButtonProps={{
+            'aria-label': 'change date',
+          }}
+        />
+        </MuiPickersUtilsProvider>
+           
             <TextField variant="outlined" margin="normal" required style={{ width: "50%" }} label="Phone Number"
             name="telephoneList[]" value={phone1} onChange={phone1Handil}/>
             {addNumber ?  <TextField variant="outlined" margin="normal" required style={{ width: "50%" }} label="Phone Number"
