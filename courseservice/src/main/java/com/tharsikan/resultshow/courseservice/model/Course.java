@@ -1,6 +1,9 @@
 package com.tharsikan.resultshow.courseservice.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.tharsikan.common.entity.Batch;
+import com.tharsikan.common.entity.DegreeProgram;
+import com.tharsikan.common.entity.Level;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -13,8 +16,8 @@ public class Course {
     private Long id;
     private String courseCode;
     private String courseTitle;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "levelId")
-    @JsonIgnore
-    Level level;
+    Long degreeProgramId;
+    Long batchId;
+    Long levelId;
+    Long gpa;
 }

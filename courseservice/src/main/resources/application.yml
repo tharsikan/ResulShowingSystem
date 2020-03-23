@@ -2,6 +2,9 @@ server:
   port: 8012
 
 spring:
+  application:
+    name: membership
+
   datasource:
     url: jdbc:mysql://localhost:3306/courseDB?createDatabaseIfNotExist=true
     username: root
@@ -12,3 +15,4 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       ddl-auto: update
+
