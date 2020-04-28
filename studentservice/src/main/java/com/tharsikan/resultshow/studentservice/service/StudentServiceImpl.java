@@ -22,10 +22,6 @@ import java.util.Optional;
 
 @Service
 public class StudentServiceImpl implements StudentService {
-    @Bean
-    public RestTemplate getRestTemplate() {
-        return new RestTemplate();
-    }
 
     @Autowired
     RestTemplate restTemplate;
@@ -51,7 +47,6 @@ public class StudentServiceImpl implements StudentService {
             telephone.setStudent(student);
         }
         student.setFullName(student.getLastName() +" "+student.getFirstName());
-        ;
         System.out.println();
 //        ZonedDateTime today = ZonedDateTime.parse(student.getDateOfBirth());
 //        student.setDateOfBirth(today);
@@ -64,7 +59,7 @@ public class StudentServiceImpl implements StudentService {
         httpheader.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         HttpEntity<StudentAllocation> entity = new HttpEntity<StudentAllocation>(studentAllocation,httpheader);
 
-        String url = "http://localhost:8015/"+studentId+"/allocation/";
+        String url = "http://studentallocation/"+studentId+"/allocation";
 
         return restTemplate.exchange(url, HttpMethod.POST, entity, StudentAllocation.class).getBody();
     }
@@ -75,7 +70,7 @@ public class StudentServiceImpl implements StudentService {
         httpheader.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         HttpEntity<StudentAllocation> entity = new HttpEntity<StudentAllocation>(httpheader);
 
-        String url = "http://localhost:8015/"+studentId+"/allocation/";
+        String url = "http://studentallocation/"+studentId+"/allocation";
 
         return restTemplate.exchange(url, HttpMethod.GET, entity, StudentAllocation[].class).getBody();
     }

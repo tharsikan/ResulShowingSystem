@@ -36,10 +36,16 @@ public class Student {
     @Transient
     private StudentAllocation[] allocations;
 
-    @OneToOne(cascade = CascadeType.ALL)
+//    @OneToOne(cascade = CascadeType.ALL)
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "houseNo", column = @Column(name = "houseNo") ),
+            @AttributeOverride(name = "lane", column = @Column(name = "laneName") ),
+            @AttributeOverride(name = "city", column = @Column(name = "cityName") )
+    })
     private Address address;
 
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Telephone> telephoneList;
 
     private String eMail;

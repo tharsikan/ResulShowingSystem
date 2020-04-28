@@ -130,7 +130,6 @@ export default function Dashboard() {
     setOpen(false);
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -148,13 +147,10 @@ export default function Dashboard() {
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             University Of Jaffna
           </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
         </Toolbar>
       </AppBar>
+      
+      
       <Drawer
         variant="permanent"
         classes={{
@@ -171,22 +167,35 @@ export default function Dashboard() {
           <EditStudentPopUp/>
         {/* <List>{secondaryListItems}</List> */}
       </Drawer>
+
+
+      
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             {/* Chart */}
             <Grid xs={12} md={12} lg={12}>
-              <Paper className={fixedHeightPaper}>
+              
                 {/* <Chart /> */}
-                
+                <Paper align="center">
+                <Grid 
+                    lg={5}
+                    md={5}
+                    xl={5}
+                    xs={5}
+                    >
+                    <DoughnutExample number='2.434' head="Cumulative GPA" />
+                </Grid>
+                </Paper>
+                <Paper className={fixedHeightPaper}>
                 <Grid
                     lg={3}
                     md={6}
                     xl={3}
                     xs={12}
                     >
-                    <DoughnutExample/>
+                    <DoughnutExample number='1.432' head="LEVEL-1 GPA"/>
                 </Grid>
                 <Grid
                     lg={3}
@@ -194,7 +203,7 @@ export default function Dashboard() {
                     xl={3}
                     xs={12}
                     >
-                    <DoughnutExample/>
+                    <DoughnutExample number='3.332' head="LEVEL-2 GPA"/>
                 </Grid>
                 <Grid
                     lg={3}
@@ -202,7 +211,7 @@ export default function Dashboard() {
                     xl={3}
                     xs={12}
                     >
-                    <DoughnutExample/>
+                    <DoughnutExample number='2.173' head="LEVEL-3 GPA"/>
                 </Grid>
                 <Grid
                     lg={3}
@@ -210,18 +219,10 @@ export default function Dashboard() {
                     xl={3}
                     xs={12}
                     >
-                    <DoughnutExample/>
+                    <DoughnutExample number='2.992' head="LEVEL-4 GPA"/>
                 </Grid>
               </Paper>
             </Grid>
-            {/* Recent Deposits */}
-            {/* <Grid item xs={12} md={3} lg={3}>
-              <Paper className={fixedHeightPaper}>
-                <Deposits />
-                
-              </Paper>
-            </Grid> */}
-            {/* Recent Orders */}
             <Grid item xs={12}>
               <Paper className={classes.paper}>
                 {/* <Orders /> */}

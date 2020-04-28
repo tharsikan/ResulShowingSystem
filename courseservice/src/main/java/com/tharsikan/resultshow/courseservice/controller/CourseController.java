@@ -7,6 +7,7 @@ import com.tharsikan.resultshow.courseservice.model.Course;
 import com.tharsikan.resultshow.courseservice.service.CourseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+//import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.util.List;
 
@@ -20,10 +21,12 @@ public class CourseController {
     public Course saveCourse(@RequestBody Course course){
         return courseService.saveCourse(course);
     }
+
     @RequestMapping(value = "/course/{courseId}", method = RequestMethod.GET)
     public Course getCourse(@PathVariable("courseId") Long courseId){
         return courseService.getCourse(courseId);
     }
+
     @RequestMapping(value = "/batch/{batchId}/degree/{degreeId}/level/{levelId}/course/{courseId}", method = RequestMethod.GET)
     public Course getCourse(@PathVariable("batchId") Long batchId, @PathVariable("degreeId") Long degreeId, @PathVariable("levelId") Long levelId, @PathVariable("courseId") Long courseId){
         return null;// courseService.getOneCourse(batchId, degreeId, levelId, courseId);

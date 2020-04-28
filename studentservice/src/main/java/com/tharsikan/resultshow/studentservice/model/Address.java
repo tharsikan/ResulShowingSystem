@@ -2,18 +2,15 @@ package com.tharsikan.resultshow.studentservice.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity
+@Embeddable
 @Data
 public class Address {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "houseNo")
     String houseNo;
+    @Column(name = "laneName")
     String lane;
+    @Column(name = "cityName")
     String city;
 }
